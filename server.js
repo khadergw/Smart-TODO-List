@@ -42,7 +42,7 @@ const widgetsRoutes = require("./routes/widgets");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-// Note: mount other resources here, using the same pattern above
+// Note: mount other resources here, using the same pattern above,
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -57,7 +57,10 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-
+// Signup page after register
+app.post("/signup", (req, res) => {
+  res.redirect("/");
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
