@@ -43,11 +43,13 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.login-part {
+.login-part,
+.profileEdit-part {
   margin: 1.5rem;
 }
 
-.login-part button {
+.login-part button,
+.profileEdit-part button {
   margin-top: 1.2rem;
   margin-bottom: 3rem;
   width: 300px;

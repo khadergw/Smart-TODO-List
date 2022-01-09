@@ -37,15 +37,15 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
-const login = require("./routes/login");
-const profileEditRoutes = require("./routes/profileEdit");
+//const login = require("./routes/login");
+//const profileEditRoutes = require("./routes/profileEdit");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-app.use("./api/login", login(db));
-app.use("/api/profileEdit", profileEditRoutes(db));
+//app.use("./api/login", login(db));
+//app.use("/api/profileEdit", profileEditRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -58,6 +58,10 @@ app.get("/", (req, res) => {
 
 app.get("/home", (req, res) => {
   res.redirect("/");
+});
+
+app.get("/edit-profile", (req, res) => {
+  res.render("edit_profile_page");
 });
 
 app.listen(PORT, () => {
