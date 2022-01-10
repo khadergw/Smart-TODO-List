@@ -61,21 +61,22 @@ const users = {
   }
 }
 
+const urlDatabase = {
+  "b2xVn2": "http://www.lighthouselabs.ca",
+  "9sm5xK": "http://www.google.com"
+};
+
 
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-// app.get("/todo", (req, res) => {
-//   // var user_id = false;
-//   // res.render("todo", {userId: user_id});
-//   res.render("todo");
-// });
 
 app.get("/todo", (req, res) => {
 
   res.render("todo");
 });
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
