@@ -3,17 +3,11 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 
 module.exports = (db) => {
-  // router.get("/", (req, res) => {
-  //   db.query(`SELECT * FROM users;`)
-  //     .then((data) => {
-  //       const users = data.rows;
-  //       console.log(users);
-  //       res.json({ users });
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).json({ error: err.message });
-  //     });
-  // });
+  /**
+   * Get a single user from the database given their email.
+   * @param {String} email The email of the user.
+   * @return {Promise<{}>} A promise to the user.
+   */
   const getUserWithEmail = function (email) {
     const command = `SELECT * FROM users WHERE email = $1`;
     const values = [email];
@@ -24,6 +18,11 @@ module.exports = (db) => {
       .catch((err) => console.log(err.message));
   };
 
+  /**
+   * Check if a user exists with a given username and password
+   * @param {String} email
+   * @param {String} password encrypted
+   */
   const login = (email, password) => {
     return getUserWithEmail(email).then((user) => {
       if (bcrypt.compareSync(password, user.password)) {
@@ -34,7 +33,9 @@ module.exports = (db) => {
   };
   exports.login = login;
 
-  router.post("/login", (req, res) => {
+  // Login if the user exist
+  // email and password compare
+  router.post("/", (req, res) => {
     const { email, password } = req.body;
     login(email, password)
       .then((user) => {
@@ -45,8 +46,7 @@ module.exports = (db) => {
           return;
         }
         req.session.userId = user.id;
-        // res.send({ user: { name: user.name, email: user.email, id: user.id } });
-        res.redirect("edit_profile_page");
+        res.redirect("todo");
       })
       .catch((err) => res.status(500).json({ error: err.message }));
   });
