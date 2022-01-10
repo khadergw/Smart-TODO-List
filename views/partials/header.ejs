@@ -1,23 +1,34 @@
-<header class="nav-bar">
-  <nav>
-    <div>
-      <p id="welcome" href="/"><strong>Welcome User</strong></p>
-    </div>
-    <!-- <%if (user_id) {%> -->
-      <div>
-        <!-- <%if (user_id && index) {%> -->
-          <!-- <a href=<%=`/edit_profile`%>>Edit Profile</a> -->
-          <a href="/edit_profile">Edit Profile</a>
 
-            <a href="/logout">Logout</a>
 
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-success">
+    <a class="navbar-brand" href="/urls">TinyApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/urls">My URLs</a>
+        <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
       </div>
-      <!-- <%}%>
-        <%if (!user_id) {%> -->
-          <!-- <div>
-            <a href="/register">Register</a>
-            <a href="/login/1">Login</a>
-          </div> -->
-          <!-- <%}%> -->
+    </div>
+
+
+    <% if (username) { %>
+      <p class="navbar-brand" style="margin: auto 1em">Logged in as: <%=  username.email%></p>
+      <form class="form-inline" action="/logout" method="POST" style="padding-top: 0px">
+        <button type="submit" class="btn btn-outline-dark" style="margin-left: 1em">Logout</button>
+      </form>
+      <% } else { %>
+      <form class="form-inline" action="/login" method="GET">
+        <button type="submit" class="btn btn-outline-light" style="margin-right: 2em;">Login</button>
+      </form>
+      <form class="form-inline" action="/register" method="GET">
+        <button type="submit" class="btn btn-outline-light">Register</button>
+      </form>
+      <% } %>
+
   </nav>
 </header>
+

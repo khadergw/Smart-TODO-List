@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Smart TODO App</title>
+  <!-- Bootstrap responsive view -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand%7CReem+Kufi" rel="stylesheet">
+  <!-- font awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/categories-list.css" type="text/css" />
+   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+<body>
+
+
+  <%- include('partials/_header') %>
+
+
+  <!-- <header class="nav-bar">
+    <nav>
+      <div>
+        <p id="welcome" href="/"><strong>Welcome User</strong></p>
+      </div>
+      <div>
+        <a href="/edit_profile">Edit Profile</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </nav>
+  </header> -->
+
+    <div class="container add-item">
+      <div class="d-flex">
+      <span class="input-group p-2">
+        <input id="itemInput" class="form-control todo-item" placeholder="Add a ToDo!" name="item">
+        <button id="itemSubmit" class="btn btn-secondary input-group-addon add-btn">Add</button>
+      </span>
+    </div>
+    </div>
+    <div class="container">
+      <div class="card-deck categories">
+        <div class="card read-list">
+          <h5 class="card-header" id="read-header">To Read</h5>
+          <div class="card-block" id="read-block">
+            <ul class="list-group list-group-flush" id="read-items">
+            </ul>
+          </div>
+        </div>
+        <div class="card watch-list">
+          <h5 class="card-header" id="watch-header">To Watch</h5>
+          <div class="card-block" id="watch-block">
+            <ul class="list-group list-group-flush" id="watch-items">
+            </ul>
+          </div>
+        </div>
+        <div class="card buy-list">
+          <h5 class="card-header" id="buy-header">To Buy</h5>
+          <div class="card-block" id="buy-block">
+            <ul class="list-group list-group-flush" id="buy-items">
+            </ul>
+          </div>
+        </div>
+        <div class="card eat-list">
+          <h5 class="card-header" id="eat-header">To Eat</h5>
+          <div class="card-block" id="eat-block">
+            <ul class="list-group list-group-flush" id="eat-items">
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>

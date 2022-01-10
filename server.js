@@ -48,8 +48,47 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+const users = {
+  "userRandomID": {
+    id: "userRandomID",
+    email: "user@example.com",
+    password: "123"
+  },
+  "user2RandomID": {
+    id: "user2RandomID",
+    email: "user2@example.com",
+    password: "123"
+  }
+}
+
+
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+// app.get("/todo", (req, res) => {
+//   // var user_id = false;
+//   // res.render("todo", {userId: user_id});
+//   res.render("todo");
+// });
+
+app.get("/todo", (req, res) => {
+  let username = req.session.user_id
+  //console.log(urlDatabase)
+  if (username) {
+    let templateVars = {
+      username: req.session.user_id,
+      //urls: urlDatabase
+    };
+    res.render("todo", templateVars);
+
+  } else {
+
+    templateVars = {
+      user: false
+    };
+    res.redirect("/register");
+  }
 });
 
 app.listen(PORT, () => {
