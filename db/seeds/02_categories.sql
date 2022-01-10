@@ -1,5 +1,5 @@
 
-INSERT INTO categories ([name])
+INSERT INTO categories (name)
 VALUES ('eat'),
       ('read'),
       ('watch'),

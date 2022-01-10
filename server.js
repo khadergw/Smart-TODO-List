@@ -71,6 +71,7 @@ app.get("/register", (req, res) => {
 // Signup page after register
 app.post("/signup", (req, res) => {
   res.redirect("/");
+});
 //Edit Profile Page
 app.get("/edit-profile", (req, res) => {
   res.render("edit_profile_page");
