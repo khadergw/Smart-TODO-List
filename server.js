@@ -48,25 +48,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-const users = {
-  "userRandomID": {
-    id: "userRandomID",
-    email: "user@example.com",
-    password: "123"
-  },
-  "user2RandomID": {
-    id: "user2RandomID",
-    email: "user2@example.com",
-    password: "123"
-  }
-}
-
-const urlDatabase = {
-  "b2xVn2": "http://www.lighthouselabs.ca",
-  "9sm5xK": "http://www.google.com"
-};
-
-
+// Home Page => Login Page
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -77,6 +59,19 @@ app.get("/todo", (req, res) => {
   res.render("todo");
 });
 
+app.get("/home", (req, res) => {
+  res.redirect("/");
+});
+
+// Register Page
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+//Edit Profile Page
+app.get("/edit-profile", (req, res) => {
+  res.render("edit_profile_page");
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
