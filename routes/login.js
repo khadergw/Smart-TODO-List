@@ -7,15 +7,25 @@ module.exports = (db) => {
   //   db.query(`SELECT * FROM users;`)
   //     .then((data) => {
   //       const users = data.rows;
+  //       console.log(users);
   //       res.json({ users });
   //     })
   //     .catch((err) => {
   //       res.status(500).json({ error: err.message });
   //     });
   // });
+  const getUserWithEmail = function (email) {
+    const command = `SELECT * FROM users WHERE email = $1`;
+    const values = [email];
+
+    return db
+      .query(command, values)
+      .then((result) => result.rows[0])
+      .catch((err) => console.log(err.message));
+  };
 
   const login = (email, password) => {
-    return db.getUserWithEmail(email).then((user) => {
+    return getUserWithEmail(email).then((user) => {
       if (bcrypt.compareSync(password, user.password)) {
         return user;
       }
@@ -29,13 +39,16 @@ module.exports = (db) => {
     login(email, password)
       .then((user) => {
         if (!user) {
-          res.send({ error: "no user found, please register first" });
+          res.send({
+            error: "no user found/wrong password, please register first",
+          });
           return;
         }
         req.session.userId = user.id;
-        res.send({ user: { name: user.name, email: user.email, id: user.id } });
+        // res.send({ user: { name: user.name, email: user.email, id: user.id } });
+        res.redirect("edit_profile_page");
       })
-      .catch((e) => res.send(e));
+      .catch((err) => res.status(500).json({ error: err.message }));
   });
 
   return router;

@@ -44,7 +44,7 @@ const login = require("./routes/login");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-app.use("./api/login", login(db));
+app.use("/login", login(db));
 // app.use("/api/profileEdit", profileEditRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -55,10 +55,6 @@ app.use("./api/login", login(db));
 // Home Page => Login Page
 app.get("/", (req, res) => {
   res.render("index");
-});
-
-app.get("/home", (req, res) => {
-  res.redirect("/");
 });
 
 // Register Page
