@@ -29,7 +29,7 @@ body {
 
 .app-title {
   text-align: center;
-  margin: 6rem auto 3rem;
+  margin: 4rem auto 3rem;
   font-size: 36px;
   font-family: "Roboto Condensed", sans-serif;
 }
@@ -59,10 +59,16 @@ body {
 
 .login-part button,
 .profileEdit-part button {
-  margin-top: 1.2rem;
-  margin-bottom: 3rem;
   width: 300px;
   height: 35px;
+}
+.profileEdit-part button {
+  margin-top: 1.2rem;
+  margin-bottom: 3rem;
+}
+.login-part button {
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .register-part {
@@ -73,4 +79,9 @@ body {
 }
 .register-part button {
   padding-top: 3px;
+}
+
+.error-message {
+  margin-bottom: 3rem;
+  color: red;
 }

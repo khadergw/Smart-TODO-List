@@ -63,15 +63,15 @@ app.use("/login", login(db));
 
 // Home Page => Login Page
 app.get("/", (req, res) => {
-  res.render("index");
+  res.redirect("/login");
+});
+
+app.get("/home", (req, res) => {
+  res.redirect("/login");
 });
 
 app.get("/todo", (req, res) => {
   res.render("todo");
-});
-
-app.get("/home", (req, res) => {
-  res.redirect("/");
 });
 
 // Register Page
