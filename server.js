@@ -54,7 +54,7 @@ const login = require("./routes/login");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", login(db));
-// app.use("/api/profileEdit", profileEditRoutes(db));
+// app.use("/edit-profile", profileEditRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -77,11 +77,6 @@ app.get("/todo", (req, res) => {
 // Register Page
 app.get("/register", (req, res) => {
   res.render("register");
-});
-
-//Edit Profile Page
-app.get("/edit-profile", (req, res) => {
-  res.render("edit_profile_page");
 });
 
 app.listen(PORT, () => {
