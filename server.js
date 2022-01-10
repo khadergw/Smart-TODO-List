@@ -57,6 +57,14 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/todo", (req, res) => {
+  res.render("todo");
+});
+
+app.get("/home", (req, res) => {
+  res.redirect("/");
+});
+
 // Register Page
 app.get("/register", (req, res) => {
   res.render("register");
