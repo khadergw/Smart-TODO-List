@@ -1,22 +1,39 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <strong><p class="navbar-brand">Welcome User</p></strong>
+    <% if(!userId){ %>
+    <strong
+      ><p class="navbar-brand">Welcome! Please Login/Register First</p></strong
+    >
+    <% }else{ %>
+    <strong><p class="navbar-brand">Welcome <%= first_name %></p></strong>
+    <% } %>
+    <div class="container-fluid"></div>
 
-    <div class="container-fluid" > </div>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <% if(userId){ %>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-
       <form class="form-inline" action="/edit_profile" method="GET">
-        <button type="submit" id="btnwrap" class="btn btn-outline-light" >Edit Profile</button>
+        <button type="submit" id="btnwrap" class="btn btn-outline-light">
+          Edit Profile
+        </button>
       </form>
-      <form class="form-inline" action="/logout" method="POST" >
-        <button type="submit" id="btnmarg" class="btn btn-outline-light" >Logout</button>
+      <form class="form-inline" action="/logout" method="POST">
+        <button type="submit" id="btnmarg" class="btn btn-outline-light">
+          Logout
+        </button>
       </form>
     </div>
+    <% } %>
   </nav>
 </header>
-
