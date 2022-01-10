@@ -7,6 +7,8 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cookieParse = require("cookie-parser");
+const cookieSession = require("cookie-session");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -32,17 +34,28 @@ app.use(
 );
 
 app.use(express.static("public"));
+app.use(cookieParse());
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+  })
+);
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
+const login = require("./routes/login");
+// const profileEditRoutes = require("./routes/profileEdit");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-// Note: mount other resources here, using the same pattern above,
+app.use("/login", login(db));
+// app.use("/edit-profile", profileEditRoutes(db));
+// Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -50,31 +63,20 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 // Home Page => Login Page
 app.get("/", (req, res) => {
-  res.render("index");
-});
-
-
-app.get("/todo", (req, res) => {
-
-  res.render("todo");
+  res.redirect("/login");
 });
 
 app.get("/home", (req, res) => {
-  res.redirect("/");
+  res.redirect("/login");
+});
+
+app.get("/todo", (req, res) => {
+  res.render("todo");
 });
 
 // Register Page
 app.get("/register", (req, res) => {
   res.render("register");
-});
-
-// Signup page after register
-app.post("/signup", (req, res) => {
-  res.redirect("/");
-});
-//Edit Profile Page
-app.get("/edit-profile", (req, res) => {
-  res.render("edit_profile_page");
 });
 
 app.listen(PORT, () => {
