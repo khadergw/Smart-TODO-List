@@ -37,15 +37,11 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
-//const login = require("./routes/login");
-//const profileEditRoutes = require("./routes/profileEdit");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-//app.use("./api/login", login(db));
-//app.use("/api/profileEdit", profileEditRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -53,7 +49,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("login_page");
+  res.render("index");
 });
 
 app.get("/home", (req, res) => {
