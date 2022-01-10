@@ -73,22 +73,8 @@ app.get("/", (req, res) => {
 // });
 
 app.get("/todo", (req, res) => {
-  let username = req.session.user_id
-  //console.log(urlDatabase)
-  if (username) {
-    let templateVars = {
-      username: req.session.user_id,
-      //urls: urlDatabase
-    };
-    res.render("todo", templateVars);
 
-  } else {
-
-    templateVars = {
-      user: false
-    };
-    res.redirect("/register");
-  }
+  res.render("todo");
 });
 
 app.listen(PORT, () => {

@@ -9,20 +9,22 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand%7CReem+Kufi" rel="stylesheet">
   <!-- font awesome -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
   <link rel="stylesheet" href="/styles/categories-list.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" /> -->
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 <body>
 
 
-  <%- include('partials/_header') %>
-
+  <% include ./partials/header %>
 
   <!-- <header class="nav-bar">
     <nav>
@@ -36,7 +38,7 @@
     </nav>
   </header> -->
 
-    <div class="container add-item">
+    <!-- <div class="container add-item">
       <div class="d-flex">
       <span class="input-group p-2">
         <input id="itemInput" class="form-control todo-item" placeholder="Add a ToDo!" name="item">
@@ -75,5 +77,110 @@
           </div>
         </div>
       </div>
+    </div> -->
+
+
+<!--
+
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Welcome User</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> LOgout</a></li>
+        </ul>
+      </div>
+    </nav> -->
+
+
+    <div class="container">
+    <h3>A List of your TODOS</h3>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card text-dark bg-light">
+        <div class="card-header bg-dark text-center text-light"><h4>To Eat</h4></div>
+          <div class="card-body ">
+            <h5 class="card-title">Your Restaurants List</h5>
+            <!--Starting list group here -->
+                <div class="list-group">
+
+                </div>
+              <!--Ends here -->
+          </div>
+          <div class="card-footer bg-secondary border-danger text-right">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card text-dark bg-light">
+        <div class="card-header bg-dark text-center text-light"><h4>To Read</h4></div>
+          <div class="card-body ">
+            <h5 class="card-title">Your Books List
+                <div class="list-group">
+
+                </div>
+              <!--Ends here -->
+          </div>
+          <div class="card-footer bg-secondary border-danger text-right">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card text-dark bg-light">
+        <div class="card-header bg-dark text-center text-light"><h4>To Watch</h4></div>
+          <div class="card-body ">
+            <h5 class="card-title">Your Movies List</h5>
+            <!--Starting list group here -->
+                <div class="list-group">
+
+              <!--Ends here -->
+          </div>
+          <div class="card-footer bg-secondary border-danger text-right">
+          </div>
+        </div>
+      </div>
     </div>
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card text-dark bg-light">
+        <div class="card-header bg-dark text-center text-light"><h4>To Buy</h4></div>
+          <div class="card-body ">
+            <h5 class="card-title">Your Shopping List</h5>
+            <!--Starting list group here -->
+                <div class="list-group">
+
+                </div>
+              <!--Ends here -->
+          </div>
+          <div class="card-footer bg-secondary border-danger text-right">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card text-dark bg-light">
+        <div class="card-header bg-dark text-center text-light"><h4>Unclassified</h4></div>
+          <div class="card-body ">
+            <h5 class="card-title">Extra List
+                <div class="list-group">
+
+                </div>
+              <!--Ends here -->
+          </div>
+          <div class="card-footer bg-secondary border-danger text-right">
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-4"></div>
+    </div>
+    </div>
+
+
+
+
 </body>
