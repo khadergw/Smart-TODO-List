@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Smart TODO App</title>
+  <!-- Bootstrap responsive view -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand%7CReem+Kufi" rel="stylesheet">
+  <!-- font awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!-- stylesheets -->
+
+ <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/categories-list.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+
+     <!-- Bootstrap css -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <!-- scripts -->
+   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+<body>
+
+
+  <% include ./partials/header %>
+
+     <br>
+    <div class="container">
+      <!--adding a new todo-->
+      <div class="container add-item">
+      <div class="d-flex">
+      <span class="input-group p-2">
+        <input id="itemInput" class="form-control todo-item" placeholder="Add a ToDo!" name="item">
+        <button id="itemSubmit" class="btn btn-secondary input-group-addon add-btn">Add</button>
+      </span>
+    </div>
+    </div>
+    <br><br>
+
+    <h2 style="text-align: center;">A List of Your TODOS</h2>
+    <br>
+
+          <!--list of the categories-->
+
+        <div class="row">
+      <div class="col-sm-4">
+        <div class="card text-dark bg-light">
+        <div class="card-header bg-dark text-center text-light"><h4>To Eat</h4></div>
+          <div class="card-body ">
+            <!--Starting list todo items here -->
+                <div class="list-group">
+                  <table class="table">
+
+                    <tbody>
+                        <tr>
+                          <td>Tim Hortons</td>
+                          <td>
+                            <!--edit and delete buttons-->
+                            <form method="POST" >
+                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              <!--Ends here -->
+          </div>
+          <div class="card-footer bg-secondary border-danger text-right">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card text-dark bg-light">
+        <div class="card-header bg-dark text-center text-light"><h4>To Read</h4></div>
+          <div class="card-body ">
+                <div class="list-group">
+
+                </div>
+              <!--Ends here -->
+          </div>
+          <div class="card-footer bg-secondary border-danger text-right">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card text-dark bg-light">
+        <div class="card-header bg-dark text-center text-light"><span style="white-space: nowrap;"><h4>To Watch</h4></div>
+          <div class="card-body ">
+            <!--Starting list todo items here -->
+                <div class="list-group">
+
+              <!--Ends here -->
+          </div>
+        </div>
+          <div class="card-footer bg-secondary border-danger text-right">
+          </div>
+
+      </div>
+    </div>
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card text-dark bg-light">
+        <div class="card-header bg-dark text-center text-light"><h4>To Buy</h4></div>
+          <div class="card-body ">
+            <!--Starting list todo items here -->
+                <div class="list-group">
+
+                </div>
+              <!--Ends here -->
+          </div>
+          <div class="card-footer bg-secondary border-danger text-right">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card text-dark bg-light">
+        <div class="card-header bg-dark text-center text-light"><h4>Unclassified</h4></div>
+          <div class="card-body ">
+                <div class="list-group">
+
+                </div>
+              <!--Ends here -->
+          </div>
+          <div class="card-footer bg-secondary border-danger text-right">
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-4"></div>
+    </div>
+    </div>
+
+
+
+
+</body>
