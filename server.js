@@ -21,6 +21,13 @@ db.connect();
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan("dev"));
 
+app.use(cookieSession({
+  name: 'session',
+  keys: ["secret"],
+  maxAge: 24 * 60 * 60 * 1000 //24 hours
+}))
+
+
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
