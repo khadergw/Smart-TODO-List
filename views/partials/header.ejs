@@ -5,7 +5,11 @@
       ><p class="navbar-brand">Welcome! Please Login/Register First</p></strong
     >
     <% }else{ %>
-    <strong><p class="navbar-brand">Welcome <%= first_name %></p></strong>
+    <strong
+      ><p class="navbar-brand">
+        Welcome <a href="/todo"><%= first_name %></a>
+      </p></strong
+    >
     <% } %>
     <div class="container-fluid"></div>
 
@@ -23,7 +27,7 @@
 
     <% if(userId){ %>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <form class="form-inline" action="/edit_profile" method="GET">
+      <form class="form-inline" action="/edit-profile" method="GET">
         <button type="submit" id="btnwrap" class="btn btn-outline-light">
           Edit Profile
         </button>
