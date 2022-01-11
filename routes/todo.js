@@ -19,28 +19,25 @@ module.exports = (db) => {
 
   router.get("/", (req, res) => {
     const userId = req.session.userId;
-    if (!userId) {
-      res.send({ message: "not logged in" });
-      return;
+    if (userId) {
+      getUserWithId(userId)
+        .then((user) => {
+          console.log(user);
+          const templateVars = {
+            userId,
+            first_name: user.first_name,
+          };
+          res.render(
+            "todo",
+            templateVars
+          ); /* Reder to todo page if user is logged in */
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+    } else {
+      res.redirect("/login");
+      /* Redirect the user to /login if user is not logged in */
     }
-
-    getUserWithId(userId)
-      .then((user) => {
-        if (!user) {
-          res.send({ error: "no user with that id" });
-          return;
-        }
-        console.log(user);
-        const templateVars = {
-          userId: user.id,
-          first_name: user.first_name,
-        };
-        res.render("edit_profile_page", templateVars);
-        // res.send({ user: { name: user.name, email: user.email, id: userId } });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
   });
+
   return router;
 };
