@@ -47,6 +47,7 @@ app.use(
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const login = require("./routes/login");
+const todo = require("./routes/todo");
 // const profileEditRoutes = require("./routes/profileEdit");
 
 // Mount all resource routes
@@ -54,6 +55,7 @@ const login = require("./routes/login");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", login(db));
+app.use("/todo", todo(db));
 // app.use("/api/profileEdit", profileEditRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -65,10 +67,11 @@ app.use("/login", login(db));
 app.get("/", (req, res) => {
   res.render("index");
 });
-
+//todo list page
 app.get("/todo", (req, res) => {
   res.render("todo");
 });
+
 
 app.get("/home", (req, res) => {
   res.redirect("/");
