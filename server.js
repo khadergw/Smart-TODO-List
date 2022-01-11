@@ -89,13 +89,17 @@ app.get("/todo", (req, res) => {
 
 // Register Page
 app.get("/register", (req, res) => {
+  
   res.render("register");
 });
 
+
 // after the register the page redirects to landing page
 app.post("/signup", (req, res) => {
+  
   res.redirect("/");
 });
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

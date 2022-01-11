@@ -17,9 +17,11 @@ const bcrypt = require("bcryptjs");
 
     pool.query(queryAddNewUser, [name, email, hashedPassword])
     .then(data => {
-      /console.log(data.rows[0]);
+
+      // console.log(data.rows[0]);
       const userId = data.rows[0].id;
       req.session.user_id = userId;
+
       res.redirect("/login");
     }).catch((err) => {
      console.log("this is the err", err)
