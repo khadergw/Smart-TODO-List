@@ -2,7 +2,8 @@ body {
  // display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+ min-height: 100vh;
+
 
   background: rgb(163, 208, 219);
   background: linear-gradient(
@@ -30,7 +31,8 @@ h2  {
 
 }
  .main-login {
-  display: flex;
+  display:flex;
   justify-content: center;
   align-items: center;
- }
+  min-height: 100vh;
+}

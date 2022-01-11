@@ -9,6 +9,7 @@ module.exports = (db) => {
       errorMessage: false,
     };
     const userId = req.session.userId;
+    console.log("userid: ", userId);
     if (userId) {
       res.redirect(
         "/todo"
