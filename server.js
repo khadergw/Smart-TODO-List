@@ -72,10 +72,6 @@ app.get("/home", (req, res) => {
   res.redirect("/login");
 });
 
-// app.get("/todo", (req, res) => {
-//   res.render("todo");
-// });
-
 // Register Page
 app.get("/register", (req, res) => {
   res.render("register");
