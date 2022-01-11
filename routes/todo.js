@@ -19,7 +19,6 @@ module.exports = (db) => {
 
   router.get("/", (req, res) => {
     const userId = req.session.userId;
-    console.log("user_id at todo:", userId);
     if (userId) {
       getUserWithId(userId)
         .then((user) => {

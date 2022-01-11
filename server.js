@@ -47,16 +47,16 @@ app.use(
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const login = require("./routes/login");
+const profileEditRoutes = require("./routes/profileEdit");
 const todo = require("./routes/todo");
-// const profileEditRoutes = require("./routes/profileEdit");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", login(db));
+app.use("/edit-profile", profileEditRoutes(db));
 app.use("/todo", todo(db));
-// app.use("/api/profileEdit", profileEditRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page

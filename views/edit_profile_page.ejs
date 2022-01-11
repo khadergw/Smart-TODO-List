@@ -27,6 +27,12 @@
       crossorigin="anonymous"
     />
 
+    <!-- App JS -->
+    <script
+      src="https://kit.fontawesome.com/91ad631787.js"
+      crossorigin="anonymous"
+    ></script>
+
     <title>EditProfile - Smart-TODO-List-App</title>
   </head>
 
@@ -36,7 +42,7 @@
     <main class="box">
       <h2 class="app-title">PLEASE EDIT YOUR PROFILE</h2>
       <div class="box-form">
-        <form class="profileEdit-part" method="POST" action="/edit-proile">
+        <form class="profileEdit-part" method="POST" action="/edit-profile">
           <div class="form-group">
             <label for="firstName">First Name</label>
             <input
@@ -58,12 +64,33 @@
           <div class="form-group">
             <label for="password">Password</label>
             <input
-              type="password"
+              type="text"
               class="form-control"
+              id="password-field"
               name="password"
               placeholder="Enter your new Password"
             />
+            <!-- <input
+              type="checkbox"
+              toggle="#password-field"
+              class="toggle-password"
+            />Show Password -->
+            <!-- <span
+              toggle="#password-field"
+              class="fa fa-fw fa-eye field-icon toggle-password"
+            ></span> -->
           </div>
+          <!-- <div class="form-group">
+            <label>Password</label>
+            <div class="input-group" id="show_hide_password">
+              <input class="form-control" type="password" />
+              <div class="input-group-addon">
+                <a href=""
+                  ><i class="fa fa-eye-slash" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div> -->
           <button type="submit" class="btn btn-primary">Save</button>
         </form>
       </div>
