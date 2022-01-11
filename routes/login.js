@@ -3,6 +3,22 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 
 module.exports = (db) => {
+  router.get("/", (req, res) => {
+    const templateVars = {
+      userId: null,
+      errorMessage: false,
+    };
+    const userId = req.session.userId;
+    if (userId) {
+      res.redirect(
+        "/todo"
+      ); /* Redirect the user to todo page if user is logged in */
+    } else {
+      res.render("index", templateVars);
+      /* Redirect the user to /login if user is not logged in */
+    }
+  });
+
   /**
    * Get a single user from the database given their email.
    * @param {String} email The email of the user.
@@ -25,10 +41,14 @@ module.exports = (db) => {
    */
   const login = (email, password) => {
     return getUserWithEmail(email).then((user) => {
-      if (bcrypt.compareSync(password, user.password)) {
-        return user;
+      if (!user) {
+        return null;
+      } else {
+        if (bcrypt.compareSync(password, user.password)) {
+          return user;
+        }
+        return null;
       }
-      return null;
     });
   };
   exports.login = login;
@@ -37,16 +57,20 @@ module.exports = (db) => {
   // email and password compare
   router.post("/", (req, res) => {
     const { email, password } = req.body;
+    const templateVars = {
+      userId: null,
+      errorMessage: false,
+    };
     login(email, password)
       .then((user) => {
         if (!user) {
-          res.send({
-            error: "no user found/wrong password, please register first",
-          });
+          templateVars.errorMessage = true;
+          res.render("index", templateVars);
           return;
         }
         req.session.userId = user.id;
-        res.redirect("todo");
+
+        res.redirect("/todo");
       })
       .catch((err) => res.status(500).json({ error: err.message }));
   });

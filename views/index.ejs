@@ -13,7 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto+Condensed:wght@700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
 
     <!-- APP CSS -->
-    <link rel="stylesheet" href="../styles/login_page.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/login_page.css" type="text/css" />
 
     <!-- Bootstrap CSS -->
     <link
@@ -27,6 +28,7 @@
 
  <!-- Login Form -->
   <body>
+    <%- include('partials/header') %>
     <main class="box">
       <h2 class="app-title">WELCOME TO SMART TODO LIST</h2>
       <div class="box-form">
@@ -54,8 +56,12 @@
             />
           </div>
           <button type="submit" class="btn btn-primary">Log In</button>
+          <% if(errorMessage){ %>
+          <p class="error-message">No User Found / Wrong Password !</p>
+          <% } %>
         </form>
-        <form class="register-part" method="POST" action="/register">
+
+        <form class="register-part" method="GET" action="/register">
           <p>New User ?</p>
           <button type="submit" class="btn btn-link">Register</button>
         </form>
