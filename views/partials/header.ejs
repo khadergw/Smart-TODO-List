@@ -5,7 +5,11 @@
       ><p class="navbar-brand">Welcome! Please Login/Register First</p></strong
     >
     <% }else{ %>
-    <strong><p class="navbar-brand">Welcome <%= first_name %></p></strong>
+    <strong
+      ><p class="navbar-brand">
+        Welcome <a href="/todo"><%= first_name %></a>
+      </p></strong
+    >
     <% } %>
     <div class="container-fluid"></div>
 
