@@ -24,6 +24,12 @@ app.use(morgan("dev"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
+// regire out functions
+const registerRoutes = require("./routes/register");
+
+// step two is app.use for our fucntions
+app.use(registerRoutes);
+
 app.use(
   "/styles",
   sassMiddleware({
@@ -77,6 +83,11 @@ app.get("/todo", (req, res) => {
 // Register Page
 app.get("/register", (req, res) => {
   res.render("register");
+});
+
+// after the register the page redirects to landing page
+app.post("/signup", (req, res) => {
+  res.redirect("/");
 });
 
 app.listen(PORT, () => {
