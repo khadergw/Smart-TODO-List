@@ -60,14 +60,16 @@ app.use(
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const login = require("./routes/login");
-// const profileEditRoutes = require("./routes/profileEdit");
+const profileEditRoutes = require("./routes/profileEdit");
+const todo = require("./routes/todo");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", login(db));
-// app.use("/edit-profile", profileEditRoutes(db));
+app.use("/edit-profile", profileEditRoutes(db));
+app.use("/todo", todo(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -83,14 +85,20 @@ app.get("/home", (req, res) => {
   res.redirect("/login");
 });
 
-app.get("/todo", (req, res) => {
-  res.render("todo");
-});
+// app.get("/todo", (req, res) => {
+//   res.render("todo");
+// });
 
 // Register Page
 app.get("/register", (req, res) => {
   
   res.render("register");
+});
+
+//logout
+app.post("/logout", (req, res) => {
+  req.session = null
+  res.redirect('/login');
 });
 
 app.listen(PORT, () => {

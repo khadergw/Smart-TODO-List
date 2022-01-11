@@ -5,11 +5,11 @@ const bcrypt = require("bcrypt");
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const templateVars = {
-      userId: null,
+      userId: req.session.userId,
       errorMessage: false,
     };
-    const userId = req.session.userId;
-    if (userId) {
+
+    if (templateVars.userId) {
       res.redirect(
         "/todo"
       ); /* Redirect the user to todo page if user is logged in */
