@@ -93,5 +93,37 @@ module.exports = (db) => {
     }
   });
 
+  //-------------Edit the exit todo Item---------------//
+  router.get("/editEatery", (req, res) => {
+    const userId = req.session.userId;
+    getUserWithId(userId)
+      .then((user) => {
+        console.log(user);
+        const templateVars = {
+          userId,
+          first_name: user.first_name,
+        };
+        res.render(
+          "todo",
+          templateVars
+        ); /* Render to todo page if user is logged in */
+      })
+      .catch((err) => res.status(500).json({ error: err.message }));
+  });
+
+  //-------------Save the changes---------------//
+  router.post("/editEatery", (req, res) => {
+    const name = req.body.eatery;
+    const userId = req.session.userId;
+    const itemId = 1;
+    updateTodoItem(userId, itemId, name)
+      .then(() => {
+        res.redirect("/todo");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   return router;
 };
