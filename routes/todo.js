@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const request = require("request");
+const { fetchData } = require("./fetchData");
 
 module.exports = (db) => {
   /**
@@ -109,76 +109,28 @@ module.exports = (db) => {
   //       res.status(500).json({ error: err.message });
   //     });
   // });
-  // ------Get data from researchAPI_URL -----------//
-  const fetchData = (userInput, callback) => {
-    const researchAPI_URL = `http://api.wolframalpha.com/v2/query?input=${userInput}&appid=AYXW5J-GKEW2LV46W&format=plaintext`;
-    request(researchAPI_URL, (error, response, body) => {
-      if (error) {
-        console.log(error);
-      } else {
-        if (body) {
-          callback(null, body);
-        } else {
-          callback("Data not Found", null);
-        }
-      }
-    });
-  };
-  // ------Get category_id by given categroy name --------//
-  const getCategoryId = (name) => {
-    const command = `SELECT id from categories WHERE name = $1`;
-    const queryParams = [name];
-
-    return db
-      .query(command, queryParams)
-      .then((result) => result.rows[0])
-      .catch((err) => console.log(err.message));
-  };
 
   // ------Add a new item to the todo List --------//
-  const addNewTodo = (userId, userInput) => {
+  const addNewTodo = (userId, userInput, category) => {
     const command = `
     INSERT INTO todos (user_id, name, category_id)
-    WITH VALUES ($1,$2,$3)
+    VALUES ($1,$2,$3)
     RETURNING *;`;
     const queryParams = [userId, userInput];
 
-    // if (
-    //   userInput.includes("eat") ||
-    //   fetchData(userInput).includes("eat") ||
-    //   fetchData(userInput).includes("food") ||
-    //   fetchData(userInput).includes("restaurant")
-    // ) {
-    //   queryParams.push(getCategoryId(eat));
-    // } else if (
-    //   userInput.includes("buy") ||
-    //   fetchData(userInput).includes("buy") ||
-    //   fetchData(userInput).includes("store") ||
-    //   fetchData(userInput).includes("market") ||
-    //   fetchData(userInput).includes("mall") ||
-    //   fetchData(userInput).includes("grocery")
-    // ) {
-    //   queryParams.push(getCategoryId(buy));
-    // } else if (
-    //   userInput.includes("read") ||
-    //   fetchData(userInput).includes("read") ||
-    //   fetchData(userInput).includes("book") ||
-    //   fetchData(userInput).includes("novel") ||
-    //   fetchData(userInput).includes("magazine") ||
-    //   fetchData(userInput).includes("store")
-    // ) {
-    //   queryParams.push(getCategoryId(read));
-    // } else if (
-    //   userInput.includes("watch") ||
-    //   fetchData(userInput).includes("watch") ||
-    //   fetchData(userInput).includes("show") ||
-    //   fetchData(userInput).includes("tv") ||
-    //   fetchData(userInput).includes("movie") ||
-    //   fetchData(userInput).includes("theater")
-    // ) {
-    //   queryParams.push(getCategoryId(watch));
-    // }
+    if (userInput.includes("eat") || category === "eat") {
+      queryParams.push(1);
+    } else if (userInput.includes("read") || category === "read") {
+      queryParams.push(2);
+    } else if (userInput.includes("watch") || category === "watch") {
+      queryParams.push(3);
+    } else if (userInput.includes("buy") || category === "buy") {
+      queryParams.push(4);
+    } else if (!category) {
+      queryParams.push(null);
+    }
 
+    console.log(command, queryParams);
     return db
       .query(command, queryParams)
       .then((result) => console.log(result.rows[0]))
@@ -186,19 +138,20 @@ module.exports = (db) => {
   };
 
   //add new todo item
-  router.post("/new", (req, res) => {
+  router.post("/add", (req, res) => {
     const userId = req.session.userId;
     const todoInput = req.body.item;
 
     if (todoInput) {
-      addNewTodo(userId, todoInput)
-        .then((todoItem) => {
-          res.send(todoItem);
-          res.render("todo");
-        })
-        .catch((err) => {
-          res.status(500).json({ error: err.message });
-        });
+      fetchData(todoInput, (err, data) => {
+        addNewTodo(userId, todoInput, data)
+          .then((todoItem) => {
+            res.redirect("/todo");
+          })
+          .catch((err) => {
+            res.status(500).json({ error: err.message });
+          });
+      });
     }
   });
   // --------------------------------------------------//
