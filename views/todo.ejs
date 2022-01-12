@@ -36,7 +36,7 @@
       <!--adding a new todo-->
       <div class="container add-item">
       <div class="d-flex">
-      <span class="input-group p-2">
+      <form class="input-group p-2" method="post" action="/todo/new">
         <input id="itemInput" class="form-control todo-item" placeholder="Add a ToDo!" name="item">
         <button id="itemSubmit" class="btn btn-secondary input-group-addon add-btn">Add</button>
       </span>
@@ -57,10 +57,11 @@
             <!--Starting list todo items here -->
                 <div class="list-group">
                   <table class="table">
-
                     <tbody>
+                      <% for (let user of users) { %>
+                        <%if (user.category === 'eat' ){%>
                         <tr>
-                          <td>Tim Hortons</td>
+                          <td><%= user.todoitem %> </td>
                           <td>
                             <!--edit and delete buttons-->
                             <form method="POST" >
@@ -69,43 +70,77 @@
                             </form>
                           </td>
                         </tr>
+                        <% }  %>
+                        <% }  %>
                     </tbody>
                   </table>
                 </div>
               <!--Ends here -->
           </div>
-          <div class="card-footer bg-secondary border-danger text-right">
-          </div>
         </div>
       </div>
+
       <div class="col-sm-4">
         <div class="card text-dark bg-light">
         <div class="card-header bg-dark text-center text-light"><h4>To Read</h4></div>
           <div class="card-body ">
                 <div class="list-group">
-
+                  <table class="table">
+                    <tbody>
+                      <% for (let user of users) { %>
+                        <%if (user.category === 'read' ){%>
+                        <tr>
+                          <td><%= user.todoitem %> </td>
+                          <td>
+                            <!--edit and delete buttons-->
+                            <form method="POST" >
+                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                        <% }  %>
+                        <% }  %>
+                    </tbody>
+                  </table>
                 </div>
               <!--Ends here -->
           </div>
-          <div class="card-footer bg-secondary border-danger text-right">
-          </div>
         </div>
       </div>
+
+
       <div class="col-sm-4">
         <div class="card text-dark bg-light">
         <div class="card-header bg-dark text-center text-light"><span style="white-space: nowrap;"><h4>To Watch</h4></div>
           <div class="card-body ">
             <!--Starting list todo items here -->
                 <div class="list-group">
-
+                  <table class="table">
+                    <tbody>
+                      <% for (let user of users) { %>
+                        <%if (user.category === 'watch' ){%>
+                        <tr>
+                          <td><%= user.todoitem %> </td>
+                          <td>
+                            <!--edit and delete buttons-->
+                            <form method="POST" >
+                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                        <% }  %>
+                        <% }  %>
+                    </tbody>
+                  </table>
               <!--Ends here -->
           </div>
         </div>
-          <div class="card-footer bg-secondary border-danger text-right">
-          </div>
-
       </div>
     </div>
+
+
     </div>
     <br><br>
     <div class="row">
@@ -115,24 +150,56 @@
           <div class="card-body ">
             <!--Starting list todo items here -->
                 <div class="list-group">
-
+                  <table class="table">
+                    <tbody>
+                      <% for (let user of users) { %>
+                        <%if (user.category === 'buy' ){%>
+                        <tr>
+                          <td><%= user.todoitem %> </td>
+                          <td>
+                            <!--edit and delete buttons-->
+                            <form method="POST" >
+                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                        <% }  %>
+                        <% }  %>
+                    </tbody>
+                  </table>
                 </div>
               <!--Ends here -->
           </div>
-          <div class="card-footer bg-secondary border-danger text-right">
-          </div>
         </div>
       </div>
+
+
       <div class="col-sm-4">
         <div class="card text-dark bg-light">
         <div class="card-header bg-dark text-center text-light"><h4>Unclassified</h4></div>
           <div class="card-body ">
                 <div class="list-group">
-
+                  <table class="table">
+                    <tbody>
+                      <% for (let user of users) { %>
+                        <%if (!user.category){%>
+                        <tr>
+                          <td><%= user.todoitem %> </td>
+                          <td>
+                            <!--edit and delete buttons-->
+                            <form method="POST" >
+                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                        <% }  %>
+                        <% }  %>
+                    </tbody>
+                  </table>
                 </div>
               <!--Ends here -->
-          </div>
-          <div class="card-footer bg-secondary border-danger text-right">
           </div>
         </div>
       </div>
