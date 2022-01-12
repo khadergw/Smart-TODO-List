@@ -11,7 +11,7 @@ module.exports = (db) => {
   const getUser_TodosWithId = (id) => {
     const command = `
     SELECT
-    users.id, users.first_name, todos.name AS todoItem, categories.name AS category
+    users.id, users.first_name, todos.name AS todoItem, todos.id AS todoId, categories.name AS category
     FROM todos
     LEFT JOIN categories ON todos.category_id = categories.id
     RIGHT JOIN users ON todos.user_id = users.id
@@ -34,7 +34,7 @@ module.exports = (db) => {
           const templateVars = {
             userId,
             first_name: users[0].first_name,
-            users,
+            users
           };
           console.log(templateVars);
           res.render(
@@ -92,6 +92,32 @@ module.exports = (db) => {
           });
       });
     }
+  });
+
+  //delete todo item function
+  const deleteTodo = function(userId, todoId, db) {
+    let query = `DELETE FROM todos WHERE user_id = $1 AND id = $2`;
+    const values = [userId, todoId];
+    return db.query(query,values)
+      .then(res => res.rows[0])
+      .catch(err => {
+        console.error('query error', err.stack);
+      });
+  };
+
+  //delete todo item route
+  router.post("/:todoId/delete", (req,res) => {
+    const userId = req.session.userId;
+    const todoId = req.params.todoId;
+    deleteTodo(userId, todoId, db)
+      .then(todo => {
+        //res.send(todo);
+        res.redirect("/todo");
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e);
+      });
   });
 
   return router;
