@@ -5,8 +5,13 @@
   <!-- Bootstrap responsive view -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--Font CSS-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto+Condensed:wght@700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
   <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Quicksand%7CReem+Kufi" rel="stylesheet">
+
   <!-- font awesome -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -37,10 +42,10 @@
       <!--adding a new todo-->
       <div class="container add-item" id="new-todo" action="/todo" method="POST">
       <div class="d-flex">
-      <span class="input-group p-2">
-        <input id="todo-name" class="form-control todo-item" placeholder="Add a ToDo!" name="todo">
+      <form class="input-group p-2" method="post" action="/todo/add">
+        <input id="itemInput" class="form-control todo-item" placeholder="Add a ToDo!" name="item">
         <button id="itemSubmit" class="btn btn-secondary input-group-addon add-btn">Add</button>
-      </span>
+      </form>
     </div>
     </div>
     <br><br>
@@ -58,9 +63,10 @@
                 <div class="list-group">
                   <table class="table">
                     <tbody>
+                      <% for (let user of users) { %>
+                        <%if (user.category === 'eat' ){%>
                         <tr>
-
-                          <td><%= todoName %><</td>
+                          <td><%= user.todoitem %> </td>
                           <td>
 
                             <!--edit and delete buttons-->
@@ -77,43 +83,77 @@
                           </div>
                           </td>
                         </tr>
+                        <% }  %>
+                        <% }  %>
                     </tbody>
                   </table>
                 </div>
               <!--Ends here -->
           </div>
-          <div class="card-footer bg-secondary border-danger text-right">
-          </div>
         </div>
       </div>
+
       <div class="col-sm-4">
         <div class="card text-dark bg-light">
         <div class="card-header bg-dark text-center text-light"><h4>To Read</h4></div>
           <div class="card-body ">
                 <div class="list-group">
-
+                  <table class="table">
+                    <tbody>
+                      <% for (let user of users) { %>
+                        <%if (user.category === 'read' ){%>
+                        <tr>
+                          <td><%= user.todoitem %> </td>
+                          <td>
+                            <!--edit and delete buttons-->
+                            <form method="POST" >
+                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                        <% }  %>
+                        <% }  %>
+                    </tbody>
+                  </table>
                 </div>
               <!--Ends here -->
           </div>
-          <div class="card-footer bg-secondary border-danger text-right">
-          </div>
         </div>
       </div>
+
+
       <div class="col-sm-4">
         <div class="card text-dark bg-light">
         <div class="card-header bg-dark text-center text-light"><span style="white-space: nowrap;"><h4>To Watch</h4></div>
           <div class="card-body ">
             <!--Starting list todo items here -->
                 <div class="list-group">
-
+                  <table class="table">
+                    <tbody>
+                      <% for (let user of users) { %>
+                        <%if (user.category === 'watch' ){%>
+                        <tr>
+                          <td><%= user.todoitem %> </td>
+                          <td>
+                            <!--edit and delete buttons-->
+                            <form method="POST" >
+                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                        <% }  %>
+                        <% }  %>
+                    </tbody>
+                  </table>
               <!--Ends here -->
           </div>
         </div>
-          <div class="card-footer bg-secondary border-danger text-right">
-          </div>
-
       </div>
     </div>
+
+
     </div>
     <br><br>
     <div class="row">
@@ -123,24 +163,57 @@
           <div class="card-body ">
             <!--Starting list todo items here -->
                 <div class="list-group">
-
+                  <table class="table">
+                    <tbody>
+                      <% for (let user of users) { %>
+                        <%if (user.category === 'buy' ){%>
+                        <tr>
+                          <td><%= user.todoitem %> </td>
+                          <td>
+                            <!--edit and delete buttons-->
+                            <form method="POST" >
+                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                        <% }  %>
+                        <% }  %>
+                    </tbody>
+                  </table>
                 </div>
               <!--Ends here -->
-          </div>
-          <div class="card-footer bg-secondary border-danger text-right">
           </div>
         </div>
       </div>
+
+
       <div class="col-sm-4">
         <div class="card text-dark bg-light">
-        <div class="card-header bg-dark text-center text-light"><h4>Unclassified</h4></div>
+        <div class="card-header bg-dark text-center text-light"><h4>Unclasssified</h4></div>
           <div class="card-body ">
+            <!--Starting list todo items here -->
                 <div class="list-group">
-
+                  <table class="table">
+                    <tbody>
+                      <% for (let user of users) { %>
+                        <%if (user.category === 'various' ){%>
+                        <tr>
+                          <td><%= user.todoitem %> </td>
+                          <td>
+                            <!--edit and delete buttons-->
+                            <form method="POST" >
+                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                        <% }  %>
+                        <% }  %>
+                    </tbody>
+                  </table>
                 </div>
               <!--Ends here -->
-          </div>
-          <div class="card-footer bg-secondary border-danger text-right">
           </div>
         </div>
       </div>
