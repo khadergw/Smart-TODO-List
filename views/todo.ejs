@@ -29,7 +29,7 @@
 <body>
 
 
-  <% include ./partials/header %>
+
 
      <br>
     <div class="container">
@@ -56,24 +56,28 @@
             <!--Starting list todo items here -->
                 <div class="list-group">
                   <table class="table">
+                    <thead>
 
+                    </thead>
                     <tbody>
+                      <% for(const todo of todos_data) { %>
                         <tr>
-
-                          <td>Tim Hortons</td>
                           <td>
-
-                            <!--edit and delete buttons-->
-                            <div>
-                            <form style="display: inline-block;" method="POST" >
-                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                            <%= todo.name %>
+                          </td>
+                          <td>
+                            <form method="GET"  action="/todo/editEatery"><button type="submit" class="btn btn-outline-success">
+                                edit
+                              </button></form>
+                          </td>
+                          <td>
+                            <form method="get" action="/">
+                              <button type="submit" class="btn btn-outline-danger">Delete</button>
                             </form>
-                              <form style="display: inline-block;" method="POST" >
-                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
-                            </form>
-                          </div>
+            
                           </td>
                         </tr>
+                        <% } %>
                     </tbody>
                   </table>
                 </div>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+
+    <!--Font CSS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto+Condensed:wght@700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- APP CSS -->
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/login_page.css" type="text/css" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+
+    <!-- App JS -->
+    <script
+      src="https://kit.fontawesome.com/91ad631787.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>EditEatery - Smart-TODO-List-App</title>
+  </head>
+
+  <!-- Edit Profile Form -->
+  <body>
+    <!-- <%- include('partials/header') %> -->
+    <main class="box">
+      <h2 class="app-title">PLEASE EDIT YOUR PROFILE</h2>
+      <div class="box-form">
+        <form class="profileEdit-part" method="POST" action="/todo/editEatery">
+          <div class="form-group">
+            <label for="firstName">enter the new Eatery name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="eatery"
+              placeholder="Enter your new Eatery Name"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

@@ -20,7 +20,7 @@ const bcrypt = require("bcryptjs");
 
       // console.log(data.rows[0]);
       const userId = data.rows[0].id;
-      req.session.user_id = userId;
+      req.session.userId = userId;
 
       res.redirect("/login");
     }).catch((err) => {
