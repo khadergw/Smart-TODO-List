@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/styles/categories-list.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
 
+
      <!-- Bootstrap css -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
@@ -56,18 +57,20 @@
             <!--Starting list todo items here -->
                 <div class="list-group">
                   <table class="table">
-
                     <tbody>
                         <tr>
 
-                          <td>Tim Hortons</td>
+                          <td><%= todoName %><</td>
                           <td>
 
                             <!--edit and delete buttons-->
                             <div>
-                            <form style="display: inline-block;" method="POST" >
-                              <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
-                            </form>
+                            <form style="display: inline-block;" method="POST">
+
+
+                              <button style="padding:2px 8px; margin-right: 0.5em;" class=" trigger_popup btn btn-outline-primary">Edit</button>
+
+                              </form>
                               <form style="display: inline-block;" method="POST" >
                               <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
                             </form>

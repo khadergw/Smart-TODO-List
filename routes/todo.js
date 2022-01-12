@@ -7,25 +7,33 @@ module.exports = (db) => {
    * @param {string} id The id of the user.
    * @return {Promise<{}>} A promise to the user.
    */
-  const getUserWithId = function (id) {
-    const command = `SELECT * FROM users WHERE id = $1`;
+
+
+  const getUserTodos = function (id) {
+    const command = `SELECT * FROM todos
+    join users on users.id = todos.user_id
+   where user_id = $1;`;
     const values = [id];
 
     return db
       .query(command, values)
-      .then((result) => result.rows[0])
+      .then((result) => result.rows)
       .catch((err) => console.log(err.message));
   };
 
+
   router.get("/", (req, res) => {
     const userId = req.session.userId;
+    console.log(userId);
     if (userId) {
-      getUserWithId(userId)
+      getUserTodos(userId)
         .then((user) => {
           console.log(user);
           const templateVars = {
             userId,
             first_name: user.first_name,
+            todoName: user.name
+
           };
           res.render(
             "todo",
