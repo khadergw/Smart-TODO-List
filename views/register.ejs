@@ -27,13 +27,20 @@
 
 
       <!-- Registration Form -->
-      
-      <form id='register-form' action='/signup' method='POST'>
+
+      <form id='register-form' action='/register' method='POST'>
         <h2>Register</h2>
         <div class="form-group input-group">
           <div class="input-group-prepend">
           </div>
-          <input type="text" name="name" class="form-control" placeholder="Name" value="<%- locals.regName %>"
+          <input type="text" name="name1" class="form-control" placeholder="Name" value="<%- locals.regName %>"
+            required />
+        </div>
+
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+          </div>
+          <input type="text" name="name2" class="form-control" placeholder="Name" value="<%- locals.regName %>"
             required />
         </div>
 
@@ -53,7 +60,7 @@
         <div class="form-group flex-container-right">
           <button type="submit" class="btn btn-primary">Register</button>
         </div>
-       
+
       </form>
 
     </div>
