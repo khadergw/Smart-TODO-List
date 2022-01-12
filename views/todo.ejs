@@ -181,13 +181,14 @@
 
       <div class="col-sm-4">
         <div class="card text-dark bg-light">
-        <div class="card-header bg-dark text-center text-light"><h4>Unclassified</h4></div>
+        <div class="card-header bg-dark text-center text-light"><h4>Unclasssified</h4></div>
           <div class="card-body ">
+            <!--Starting list todo items here -->
                 <div class="list-group">
                   <table class="table">
                     <tbody>
                       <% for (let user of users) { %>
-                        <%if (!user.category){%>
+                        <%if (user.category === 'various' ){%>
                         <tr>
                           <td><%= user.todoitem %> </td>
                           <td>

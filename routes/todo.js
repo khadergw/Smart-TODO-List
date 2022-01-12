@@ -14,7 +14,7 @@ module.exports = (db) => {
     users.id, users.first_name, todos.name AS todoItem, categories.name AS category
     FROM todos
     LEFT JOIN categories ON todos.category_id = categories.id
-    JOIN users ON todos.user_id = users.id
+    RIGHT JOIN users ON todos.user_id = users.id
     WHERE users.id = $1;`;
     const values = [id];
 
@@ -127,7 +127,7 @@ module.exports = (db) => {
     } else if (userInput.includes("buy") || category === "buy") {
       queryParams.push(4);
     } else if (!category) {
-      queryParams.push(null);
+      queryParams.push(5);
     }
 
     console.log(command, queryParams);
