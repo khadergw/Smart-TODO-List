@@ -4,4 +4,4 @@ INSERT INTO todos (user_id, category_id, name)
         (1, 1, 'Bananas'),
         (1, 4, 'newspaper'),
         (1, 1, 'Tim Hortons'),
-        (1, null,'space');
+        (1, 5,'space');
