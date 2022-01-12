@@ -56,13 +56,21 @@ module.exports = (db) => {
     RETURNING *;`;
     const queryParams = [userId, userInput];
 
-    if (userInput.includes("eat") || category === "eat") {
+    if (userInput.includes("eat")) {
       queryParams.push(1);
-    } else if (userInput.includes("read") || category === "read") {
+    } else if (userInput.includes("read")) {
       queryParams.push(2);
-    } else if (userInput.includes("watch") || category === "watch") {
+    } else if (userInput.includes("watch")) {
       queryParams.push(3);
-    } else if (userInput.includes("buy") || category === "buy") {
+    } else if (userInput.includes("buy")) {
+      queryParams.push(4);
+    } else if (category === "eat") {
+      queryParams.push(1);
+    } else if (category === "read") {
+      queryParams.push(2);
+    } else if (category === "watch") {
+      queryParams.push(3);
+    } else if (category === "buy") {
       queryParams.push(4);
     } else if (!category) {
       queryParams.push(5);
@@ -93,6 +101,8 @@ module.exports = (db) => {
     }
   });
 
+  //-------------------------------------------------------//
+
   //delete todo item function
   const deleteTodo = function (userId, todoId, db) {
     let query = `DELETE FROM todos WHERE user_id = $1 AND id = $2`;
@@ -120,10 +130,35 @@ module.exports = (db) => {
       });
   });
 
-  //-------------Edit the exit todo Item---------------//
-  router.get("/editEatery", (req, res) => {
+  //-----------------------------------------------------//
+  /**
+   * Get a single todo Item from the database given their toid.
+   * @param {string} id The id of the todoItem.
+   * @return {Promise<{}>} A promise to the user.
+   */
+  const getTodoItemWithIds = (userId, todoId) => {
+    const command = `
+    SELECT
+    users.id, users.first_name, todos.name AS todoItem, todos.id AS todoId, categories.name AS category
+    FROM todos
+    LEFT JOIN categories ON todos.category_id = categories.id
+    RIGHT JOIN users ON todos.user_id = users.id
+    WHERE users.id = $1
+    AND todos.id = $2;`;
+    const values = [userId, todoId];
+
+    return db
+      .query(command, values)
+      .then((result) => result.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+  //Edit the exist todo Item
+  router.get("/:todoId", (req, res) => {
     const userId = req.session.userId;
-    getUserWithId(userId)
+    const todoId = req.params.todoId;
+    console.log("great");
+
+    getTodoItemWithIds(userId, todoId)
       .then((user) => {
         console.log(user);
         const templateVars = {
@@ -131,14 +166,14 @@ module.exports = (db) => {
           first_name: user.first_name,
         };
         res.render(
-          "todo",
+          "editEatery",
           templateVars
         ); /* Render to todo page if user is logged in */
       })
       .catch((err) => res.status(500).json({ error: err.message }));
   });
 
-  //-------------Save the changes---------------//
+  //Save the changes
   router.post("/editEatery", (req, res) => {
     const name = req.body.eatery;
     const userId = req.session.userId;
