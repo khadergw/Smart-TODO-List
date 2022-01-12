@@ -39,7 +39,7 @@ module.exports = (db) => {
           res.render(
             "todo",
             templateVars
-          ); /* Reder to todo page if user is logged in */
+          ); /* Render to todo page if user is logged in */
         })
         .catch((err) => res.status(500).json({ error: err.message }));
     } else {
@@ -154,7 +154,6 @@ module.exports = (db) => {
       });
     }
   });
-  // --------------------------------------------------//
 
   return router;
 };

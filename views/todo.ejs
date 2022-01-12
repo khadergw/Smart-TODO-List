@@ -34,7 +34,7 @@
      <br>
     <div class="container">
       <!--adding a new todo-->
-      <div class="container add-item">
+      <div class="container add-item" id="new-todo" action="/todo" method="POST">
       <div class="d-flex">
       <form class="input-group p-2" method="post" action="/todo/add">
         <input id="itemInput" class="form-control todo-item" placeholder="Add a ToDo!" name="item">
@@ -48,7 +48,6 @@
     <br>
 
           <!--list of the categories-->
-
         <div class="row">
       <div class="col-sm-4">
         <div class="card text-dark bg-light">
@@ -63,11 +62,16 @@
                         <tr>
                           <td><%= user.todoitem %> </td>
                           <td>
+
                             <!--edit and delete buttons-->
-                            <form method="POST" >
+                            <div>
+                            <form style="display: inline-block;" method="POST" >
                               <button style="padding:2px 8px; margin-right: 0.5em;" class="btn btn-outline-primary">Edit</button>
+                            </form>
+                              <form style="display: inline-block;" method="POST" >
                               <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
                             </form>
+                          </div>
                           </td>
                         </tr>
                         <% }  %>
