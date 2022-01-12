@@ -94,17 +94,31 @@ module.exports = (db) => {
 
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
-        editUserProfile(userId, firstName, lastName, hash)
-          .then((user) => {
-            if (!user) {
-              res.send({ error: "no user with that id" });
-              return;
-            }
-            res.redirect("/todo");
-          })
-          .catch((err) => {
-            res.status(500).json({ error: err.message });
-          });
+        if (!password) {
+          editUserProfile(userId, firstName, lastName, null)
+            .then((user) => {
+              if (!user) {
+                res.send({ error: "no user with that id" });
+                return;
+              }
+              res.redirect("/todo");
+            })
+            .catch((err) => {
+              res.status(500).json({ error: err.message });
+            });
+        } else if (password) {
+          editUserProfile(userId, firstName, lastName, hash)
+            .then((user) => {
+              if (!user) {
+                res.send({ error: "no user with that id" });
+                return;
+              }
+              res.redirect("/todo");
+            })
+            .catch((err) => {
+              res.status(500).json({ error: err.message });
+            });
+        }
       });
     });
   });
