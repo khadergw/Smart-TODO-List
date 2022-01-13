@@ -28,6 +28,10 @@
 
 
      <!-- Bootstrap css -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <!-- scripts -->
@@ -68,22 +72,69 @@
                       <% for (let user of users) { %>
                         <%if (user.category === 'eat' ){%>
                         <tr>
-                          <td><%= user.todoitem %> </td>
-                          <td>
+                          <td class = "itemName">
+                           <!-- Button to Open the Modal -->
+                           <button type="button" class="btn btn-light itemBtn" style="text-align: left;"data-toggle="modal" data-target="#myModal<%= user.todoid %>">
+                            <%= user.todoitem %>
+                           </button>
 
+                           <!-- The Modal -->
+                           <div class="modal" id="myModal<%= user.todoid %>">
+                            <div class="modal-dialog">
+                             <div class="modal-content">
+
+                        <!-- Modal Header -->
+                              <div class="modal-header">
+                              <h4 class="modal-title"> <%= user.todoitem %></h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+
+                        <!-- Modal body -->
+                             <div class="modal-body">
+                              <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">Category:</th>
+                                    <td><%= user.category %></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Location</th>
+                                    <td><%= user.location %></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">DueDate</th>
+                                    <td><%= user.duedate %></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                             </div>
+
+                        <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                              </div>
+                            </div>
+                           </div>
+                          </td>
+                          <td >
                             <!--edit and delete buttons-->
-                            <div>
-                              <a href="/todo/<%= user.todoid %>">
-                                <input
-                                  style="padding:2px 8px; margin-right: 0.5em;"
-                                  class="trigger_popup btn btn-outline-primary"
-                                  type="submit"
-                                  value="Edit"
-                                />
-
-                              <form style="display: inline-block;" method="POST" action="/todo/<%= user.todoid %>/delete">
-                              <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
-                            </form>
+                            <div class="actionBtns" >
+                              <div>
+                                <a href="/todo/<%= user.todoid %>">
+                                  <input
+                                    style="padding:2px 8px; margin-right: 0.5em;"
+                                    class="trigger_popup btn btn-outline-primary"
+                                    type="submit"
+                                    value="Edit"
+                                  />
+                              </div>
+                              <div>
+                                <form style="display: inline-block;" method="POST" action="/todo/<%= user.todoid %>/delete">
+                                <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                                                            </form>
+                              </div>
 
                           </div>
                           </td>
@@ -107,24 +158,74 @@
                     <tbody>
                       <% for (let user of users) { %>
                         <%if (user.category === 'read' ){%>
-                        <tr>
-                          <td><%= user.todoitem %> </td>
-                          <td>
-                            <!--edit and delete buttons-->
-                            <div>
-                              <a href="/todo/<%= user.todoid %>">
-                                <input
-                                  style="padding:2px 8px; margin-right: 0.5em;"
-                                  class="trigger_popup btn btn-outline-primary"
-                                  type="submit"
-                                  value="Edit"
-                                />
-                                <form style="display: inline-block;" method="POST" action="/todo/<%= user.todoid %>/delete">
+                          <tr>
+                            <td class = "itemName">
+                             <!-- Button to Open the Modal -->
+                             <button type="button" class="btn btn-light itemBtn" style="text-align: left;"data-toggle="modal" data-target="#myModal<%= user.todoid %>">
+                              <%= user.todoitem %>
+                             </button>
+
+                             <!-- The Modal -->
+                             <div class="modal" id="myModal<%= user.todoid %>">
+                              <div class="modal-dialog">
+                               <div class="modal-content">
+
+                          <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h4 class="modal-title"> <%= user.todoitem %></h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                          <!-- Modal body -->
+                               <div class="modal-body">
+                                <table class="table">
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Category:</th>
+                                      <td><%= user.category %></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Location</th>
+                                      <td><%= user.location %></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">DueDate</th>
+                                      <td><%= user.duedate %></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                               </div>
+
+                          <!-- Modal footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              </div>
+
+                                </div>
+                              </div>
+                             </div>
+                            </td>
+                            <td >
+                              <!--edit and delete buttons-->
+                              <div class="actionBtns" >
+                                <div>
+                                  <a href="/todo/<%= user.todoid %>">
+                                    <input
+                                      style="padding:2px 8px; margin-right: 0.5em;"
+                                      class="trigger_popup btn btn-outline-primary"
+                                      type="submit"
+                                      value="Edit"
+                                    />
+                                </div>
+                                <div>
+                                  <form style="display: inline-block;" method="POST" action="/todo/<%= user.todoid %>/delete">
                                   <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
-                                </form>
+                                                              </form>
+                                </div>
+
                             </div>
-                          </td>
-                        </tr>
+                            </td>
+                          </tr>
                         <% }  %>
                         <% }  %>
                     </tbody>
@@ -146,24 +247,74 @@
                     <tbody>
                       <% for (let user of users) { %>
                         <%if (user.category === 'watch' ){%>
-                        <tr>
-                          <td><%= user.todoitem %> </td>
-                          <td>
-                            <!--edit and delete buttons-->
-                            <div>
-                              <a href="/todo/<%= user.todoid %>">
-                                <input
-                                  style="padding:2px 8px; margin-right: 0.5em;"
-                                  class="trigger_popup btn btn-outline-primary"
-                                  type="submit"
-                                  value="Edit"
-                                />
-                                <form style="display: inline-block;" method="POST" action="/todo/<%= user.todoid %>/delete">
-                                <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
-                              </form>
+                          <tr>
+                            <td class = "itemName">
+                             <!-- Button to Open the Modal -->
+                             <button type="button" class="btn btn-light itemBtn" style="text-align: left;"data-toggle="modal" data-target="#myModal<%= user.todoid %>">
+                              <%= user.todoitem %>
+                             </button>
+
+                             <!-- The Modal -->
+                             <div class="modal" id="myModal<%= user.todoid %>">
+                              <div class="modal-dialog">
+                               <div class="modal-content">
+
+                          <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h4 class="modal-title"> <%= user.todoitem %></h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                          <!-- Modal body -->
+                               <div class="modal-body">
+                                <table class="table">
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Category:</th>
+                                      <td><%= user.category %></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Location</th>
+                                      <td><%= user.location %></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">DueDate</th>
+                                      <td><%= user.duedate %></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                               </div>
+
+                          <!-- Modal footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              </div>
+
+                                </div>
+                              </div>
+                             </div>
+                            </td>
+                            <td >
+                              <!--edit and delete buttons-->
+                              <div class="actionBtns" >
+                                <div>
+                                  <a href="/todo/<%= user.todoid %>">
+                                    <input
+                                      style="padding:2px 8px; margin-right: 0.5em;"
+                                      class="trigger_popup btn btn-outline-primary"
+                                      type="submit"
+                                      value="Edit"
+                                    />
+                                </div>
+                                <div>
+                                  <form style="display: inline-block;" method="POST" action="/todo/<%= user.todoid %>/delete">
+                                  <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                                                              </form>
+                                </div>
+
                             </div>
-                          </td>
-                        </tr>
+                            </td>
+                          </tr>
                         <% }  %>
                         <% }  %>
                     </tbody>
@@ -188,24 +339,74 @@
                     <tbody>
                       <% for (let user of users) { %>
                         <%if (user.category === 'buy' ){%>
-                        <tr>
-                          <td><%= user.todoitem %> </td>
-                          <td>
-                            <!--edit and delete buttons-->
-                            <div>
-                              <a href="/todo/<%= user.todoid %>">
-                                <input
-                                  style="padding:2px 8px; margin-right: 0.5em;"
-                                  class="trigger_popup btn btn-outline-primary"
-                                  type="submit"
-                                  value="Edit"
-                                />
-                                <form style="display: inline-block;" method="POST" action="/todo/<%= user.todoid %>/delete">
-                                <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
-                              </form>
+                          <tr>
+                            <td class = "itemName">
+                             <!-- Button to Open the Modal -->
+                             <button type="button" class="btn btn-light itemBtn" style="text-align: left;"data-toggle="modal" data-target="#myModal<%= user.todoid %>">
+                              <%= user.todoitem %>
+                             </button>
+
+                             <!-- The Modal -->
+                             <div class="modal" id="myModal<%= user.todoid %>">
+                              <div class="modal-dialog">
+                               <div class="modal-content">
+
+                          <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h4 class="modal-title"> <%= user.todoitem %></h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                          <!-- Modal body -->
+                               <div class="modal-body">
+                                <table class="table">
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Category:</th>
+                                      <td><%= user.category %></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Location</th>
+                                      <td><%= user.location %></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">DueDate</th>
+                                      <td><%= user.duedate %></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                               </div>
+
+                          <!-- Modal footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              </div>
+
+                                </div>
+                              </div>
+                             </div>
+                            </td>
+                            <td >
+                              <!--edit and delete buttons-->
+                              <div class="actionBtns" >
+                                <div>
+                                  <a href="/todo/<%= user.todoid %>">
+                                    <input
+                                      style="padding:2px 8px; margin-right: 0.5em;"
+                                      class="trigger_popup btn btn-outline-primary"
+                                      type="submit"
+                                      value="Edit"
+                                    />
+                                </div>
+                                <div>
+                                  <form style="display: inline-block;" method="POST" action="/todo/<%= user.todoid %>/delete">
+                                  <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                                                              </form>
+                                </div>
+
                             </div>
-                          </td>
-                        </tr>
+                            </td>
+                          </tr>
                         <% }  %>
                         <% }  %>
                     </tbody>
@@ -227,24 +428,74 @@
                     <tbody>
                       <% for (let user of users) { %>
                         <%if (user.category === 'various' ){%>
-                        <tr>
-                          <td><%= user.todoitem %> </td>
-                          <td>
-                            <!--edit and delete buttons-->
-                            <div>
-                              <a href="/todo/<%= user.todoid %>">
-                                <input
-                                  style="padding:2px 8px; margin-right: 0.5em;"
-                                  class="trigger_popup btn btn-outline-primary"
-                                  type="submit"
-                                  value="Edit"
-                                />
-                                <form style="display: inline-block;" method="POST" action="/todo/<%= user.todoid %>/delete">
-                                <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
-                              </form>
+                          <tr>
+                            <td class = "itemName">
+                             <!-- Button to Open the Modal -->
+                             <button type="button" class="btn btn-light itemBtn" style="text-align: left;"data-toggle="modal" data-target="#myModal<%= user.todoid %>">
+                              <%= user.todoitem %>
+                             </button>
+
+                             <!-- The Modal -->
+                             <div class="modal" id="myModal<%= user.todoid %>">
+                              <div class="modal-dialog">
+                               <div class="modal-content">
+
+                          <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h4 class="modal-title"> <%= user.todoitem %></h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                          <!-- Modal body -->
+                               <div class="modal-body">
+                                <table class="table">
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Category:</th>
+                                      <td><%= user.category %></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Location</th>
+                                      <td><%= user.location %></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">DueDate</th>
+                                      <td><%= user.duedate %></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                               </div>
+
+                          <!-- Modal footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              </div>
+
+                                </div>
+                              </div>
+                             </div>
+                            </td>
+                            <td >
+                              <!--edit and delete buttons-->
+                              <div class="actionBtns" >
+                                <div>
+                                  <a href="/todo/<%= user.todoid %>">
+                                    <input
+                                      style="padding:2px 8px; margin-right: 0.5em;"
+                                      class="trigger_popup btn btn-outline-primary"
+                                      type="submit"
+                                      value="Edit"
+                                    />
+                                </div>
+                                <div>
+                                  <form style="display: inline-block;" method="POST" action="/todo/<%= user.todoid %>/delete">
+                                  <button style="padding:2px;" class="btn btn-outline-danger">Delete</button>
+                                                              </form>
+                                </div>
+
                             </div>
-                          </td>
-                        </tr>
+                            </td>
+                          </tr>
                         <% }  %>
                         <% }  %>
                     </tbody>
@@ -254,9 +505,11 @@
           </div>
         </div>
       </div>
-        <div class="col-sm-4"></div>
     </div>
     </div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6845a2eaca00d03e471b901a141f783471698508
 </body>
