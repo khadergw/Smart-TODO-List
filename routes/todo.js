@@ -156,7 +156,6 @@ module.exports = (db) => {
   router.get("/:todoId", (req, res) => {
     const userId = req.session.userId;
     const todoId = req.params.todoId;
-    console.log("great");
 
     getTodoItemWithIds(userId, todoId)
       .then((user) => {
@@ -164,22 +163,42 @@ module.exports = (db) => {
         const templateVars = {
           userId,
           first_name: user.first_name,
+          user,
         };
         res.render(
-          "editEatery",
+          "editCategory",
           templateVars
         ); /* Render to todo page if user is logged in */
       })
       .catch((err) => res.status(500).json({ error: err.message }));
   });
 
+  /**
+   * Update a single todoItem from the database given their id.
+   * @param {string} id The id of the user.
+   * @return {Promise<{}>} A promise to the user.
+   */
+  const updateTodoItem = (category_id, todoId) => {
+    let command = `
+    UPDATE todos
+    SET category_id = $1
+    WHERE id = $2
+    RETURNING *;`;
+    let queryParams = [category_id, todoId];
+
+    return db
+      .query(command, queryParams)
+      .then((result) => result.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+
   //Save the changes
-  router.post("/editEatery", (req, res) => {
-    const name = req.body.eatery;
-    const userId = req.session.userId;
-    const itemId = 1;
-    updateTodoItem(userId, itemId, name)
-      .then(() => {
+  router.post("/:todoId", (req, res) => {
+    const todoId = req.params.todoId;
+    const { category_id } = req.body;
+
+    updateTodoItem(category_id, todoId)
+      .then((user) => {
         res.redirect("/todo");
       })
       .catch((err) => {
