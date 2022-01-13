@@ -42,6 +42,7 @@
     <%- include('partials/header') %>
     <main class="box">
       <h2 class="app-title">PLEASE EDIT YOUR TODO ITEM</h2>
+      <h4 style="text-align: center"><%= user.todoitem %></h4>
       <div class="box-form">
         <form
           class="profileEdit-part"
@@ -69,7 +70,7 @@
               >
             </div>
             <select class="custom-select" name="category_id">
-              <option selected>Choose...</option>
+              <option value="">Choose...</option>
               <option value="1">To Eat</option>
               <option value="2">To Read</option>
               <option value="3">To Watch</option>

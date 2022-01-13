@@ -11,7 +11,9 @@ module.exports = (db) => {
   const getUser_TodosWithId = (id) => {
     const command = `
     SELECT
-    users.id, users.first_name, todos.name AS todoItem, todos.id AS todoId, categories.name AS category
+    users.id, users.first_name,
+    todos.name AS todoItem, todos.id AS todoId, todos.location, todos.duedate,
+    categories.name AS category
     FROM todos
     LEFT JOIN categories ON todos.category_id = categories.id
     RIGHT JOIN users ON todos.user_id = users.id
