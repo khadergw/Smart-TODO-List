@@ -178,13 +178,45 @@ module.exports = (db) => {
    * @param {string} id The id of the user.
    * @return {Promise<{}>} A promise to the user.
    */
-  const updateTodoItem = (category_id, todoId) => {
-    let command = `
-    UPDATE todos
-    SET category_id = $1
-    WHERE id = $2
-    RETURNING *;`;
-    let queryParams = [category_id, todoId];
+  const updateTodoItem = (category_id, todoId, name, location, dueDate) => {
+    let queryParams = [];
+    let command = `UPDATE todos `;
+
+    if (name) {
+      queryParams.push(name);
+      command += `SET name = $${queryParams.length}`;
+    }
+
+    if (location) {
+      queryParams.push(location);
+      if (queryParams.length === 1) {
+        command += `SET location = $${queryParams.length}`;
+      } else {
+        command += `, location = $${queryParams.length}`;
+      }
+    }
+
+    if (dueDate) {
+      queryParams.push(dueDate);
+      if (queryParams.length === 1) {
+        command += `SET dueDate = $${queryParams.length}`;
+      } else {
+        command += `, dueDate = $${queryParams.length}`;
+      }
+    }
+
+    if (category_id) {
+      queryParams.push(category_id);
+      if (queryParams.length === 1) {
+        command += `SET category_id = $${queryParams.length}`;
+      } else {
+        command += `, category_id = $${queryParams.length}`;
+      }
+    }
+
+    queryParams.push(todoId);
+    command += ` WHERE id = $${queryParams.length} RETURNING *;`;
+    console.log(command, queryParams);
 
     return db
       .query(command, queryParams)
@@ -195,9 +227,10 @@ module.exports = (db) => {
   //Save the changes
   router.post("/:todoId", (req, res) => {
     const todoId = req.params.todoId;
-    const { category_id } = req.body;
+    const { category_id, title, location, dueDate } = req.body;
+    console.log(req.body);
 
-    updateTodoItem(category_id, todoId)
+    updateTodoItem(category_id, todoId, title, location, dueDate)
       .then((user) => {
         res.redirect("/todo");
       })
