@@ -9,12 +9,24 @@
   font-weight: bold;
 }
 
-.itemName {
-  width: 200px;
-}
-
 .actionBtns {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  margin-top: 0.3rem;
+}
+
+input[type="checkbox"]:checked + .itemBtn {
+  color: grey;
+  text-decoration-line: line-through;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.checkbox Input {
+  margin-top: 0.8rem;
 }
