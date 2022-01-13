@@ -8,3 +8,13 @@
 .card-header h4 {
   font-weight: bold;
 }
+
+.itemName {
+  width: 200px;
+}
+
+.actionBtns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
