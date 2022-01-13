@@ -32,11 +32,25 @@
   </head>
   <!-- Edit Profile Form -->
   <body>
+
+    
     <%- include('partials/header') %>
     <main class="box">
       <h2 class="app-title">PLEASE EDIT YOUR PROFILE</h2>
       <div class="box-form">
-        <form class="profileEdit-part" method="POST" action="/editEatery">
+        <p><%= todoId %></p>
+        <form class="profileEdit-part" method="POST" action='/todo/editEatery/<%= todoId %>'>
+
+
+
+
+ 
+
+
+          
+
+
+
           <div class="form-group">
             <label for="firstName">enter the new Eatery name</label>
             <input
@@ -52,3 +66,5 @@
     </main>
   </body>
 </html>
+
+

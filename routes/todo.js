@@ -1,3 +1,4 @@
+const { request } = require("express");
 const express = require("express");
 const router = express.Router();
 const { fetchData } = require("./fetchData");
@@ -160,9 +161,10 @@ module.exports = (db) => {
 
     getTodoItemWithIds(userId, todoId)
       .then((user) => {
-        console.log(user);
+        // console.log("user", user);
         const templateVars = {
           userId,
+          todoId,
           first_name: user.first_name,
         };
         res.render(
@@ -174,13 +176,33 @@ module.exports = (db) => {
   });
 
   //Save the changes
-  router.post("/editEatery", (req, res) => {
+
+  // update to do item
+  const updateTodoItem = (userId, itemId, name) => {
+    let queryParams = [userId, itemId];
+    queryString = `DELETE FROM todos WHERE user_id = $1 AND id = $2;
+    `;
+    return db.query(queryString, queryParams);
+  };
+
+
+  // edit item
+  router.post("/editEatery/:todoId", (req, res) => {
     const name = req.body.eatery;
     const userId = req.session.userId;
-    const itemId = 1;
+    // const itemId = 7;
+    const itemId = req.params.todoId;
+    console.log(itemId);
     updateTodoItem(userId, itemId, name)
       .then(() => {
-        res.redirect("/todo");
+        if (name) {
+          fetchData(name, (err, data) => {
+            addNewTodo(userId, name, data)
+              .then((todoItem) => {
+                res.redirect("/todo");
+              })
+          });
+        }
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
