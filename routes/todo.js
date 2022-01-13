@@ -1,4 +1,3 @@
-const { request } = require("express");
 const express = require("express");
 const router = express.Router();
 const { fetchData } = require("./fetchData");
@@ -157,52 +156,83 @@ module.exports = (db) => {
   router.get("/:todoId", (req, res) => {
     const userId = req.session.userId;
     const todoId = req.params.todoId;
-    console.log("great");
 
     getTodoItemWithIds(userId, todoId)
       .then((user) => {
-        // console.log("user", user);
+        console.log(user);
         const templateVars = {
           userId,
-          todoId,
           first_name: user.first_name,
+          user,
         };
         res.render(
-          "editEatery",
+          "editCategory",
           templateVars
         ); /* Render to todo page if user is logged in */
       })
       .catch((err) => res.status(500).json({ error: err.message }));
   });
 
-  //Save the changes
+  /**
+   * Update a single todoItem from the database given their id.
+   * @param {string} id The id of the user.
+   * @return {Promise<{}>} A promise to the user.
+   */
+  const updateTodoItem = (category_id, todoId, name, location, dueDate) => {
+    let queryParams = [];
+    let command = `UPDATE todos `;
 
-  // update to do item
-  const updateTodoItem = (userId, itemId, name) => {
-    let queryParams = [userId, itemId];
-    queryString = `DELETE FROM todos WHERE user_id = $1 AND id = $2;
-    `;
-    return db.query(queryString, queryParams);
+    if (name) {
+      queryParams.push(name);
+      command += `SET name = $${queryParams.length}`;
+    }
+
+    if (location) {
+      queryParams.push(location);
+      if (queryParams.length === 1) {
+        command += `SET location = $${queryParams.length}`;
+      } else {
+        command += `, location = $${queryParams.length}`;
+      }
+    }
+
+    if (dueDate) {
+      queryParams.push(dueDate);
+      if (queryParams.length === 1) {
+        command += `SET dueDate = $${queryParams.length}`;
+      } else {
+        command += `, dueDate = $${queryParams.length}`;
+      }
+    }
+
+    if (category_id) {
+      queryParams.push(category_id);
+      if (queryParams.length === 1) {
+        command += `SET category_id = $${queryParams.length}`;
+      } else {
+        command += `, category_id = $${queryParams.length}`;
+      }
+    }
+
+    queryParams.push(todoId);
+    command += ` WHERE id = $${queryParams.length} RETURNING *;`;
+    console.log(command, queryParams);
+
+    return db
+      .query(command, queryParams)
+      .then((result) => result.rows[0])
+      .catch((err) => console.log(err.message));
   };
 
+  //Save the changes
+  router.post("/:todoId", (req, res) => {
+    const todoId = req.params.todoId;
+    const { category_id, title, location, dueDate } = req.body;
+    console.log(req.body);
 
-  // edit item
-  router.post("/editEatery/:todoId", (req, res) => {
-    const name = req.body.eatery;
-    const userId = req.session.userId;
-    // const itemId = 7;
-    const itemId = req.params.todoId;
-    console.log(itemId);
-    updateTodoItem(userId, itemId, name)
-      .then(() => {
-        if (name) {
-          fetchData(name, (err, data) => {
-            addNewTodo(userId, name, data)
-              .then((todoItem) => {
-                res.redirect("/todo");
-              })
-          });
-        }
+    updateTodoItem(category_id, todoId, title, location, dueDate)
+      .then((user) => {
+        res.redirect("/todo");
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
