@@ -16,9 +16,9 @@ The following steps are only for _one_ of the group members to perform.
 
 ## App Demo
 
-!["App Demo - Add Todos"](https://github.com/khadergw/)
-!["App Demo - Edit Todos"](https://github.com/khadergw/)
-!["App Demo - Edit Profile"](https://github.com/khadergw/)
+!["App Demo - Todos Page"](https://github.com/khadergw/Smart-TODO-List/blob/master/docs/todos%20page.png)
+!["App Demo - Edit Todos Page"](https://github.com/khadergw/Smart-TODO-List/blob/master/docs/edit%20todo%20page.png)
+!["App Demo - Edit Profile Page"](https://github.com/khadergw/Smart-TODO-List/blob/master/docs/edit%20profile%20page.png)
 
 
 ## Getting Started
