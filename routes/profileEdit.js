@@ -94,7 +94,9 @@ module.exports = (db) => {
 
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
-        if (!password) {
+        if (!firstName && !lastName && !password) {
+          res.redirect("/todo");
+        } else if (!password) {
           editUserProfile(userId, firstName, lastName, null)
             .then((user) => {
               if (!user) {
