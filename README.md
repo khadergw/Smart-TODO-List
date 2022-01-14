@@ -12,6 +12,15 @@ The following steps are only for _one_ of the group members to perform.
 5. Let your team members know the repo URL so that they use the same repo (they should _not_ create a copy/fork of this repo since that will add additional workflow complexity to the project)
 
 
+
+
+## App Demo
+
+!["App Demo - Todos Page"](https://github.com/khadergw/Smart-TODO-List/blob/master/docs/todos%20page.png)
+!["App Demo - Edit Todos Page"](https://github.com/khadergw/Smart-TODO-List/blob/master/docs/edit%20todo%20page.png)
+!["App Demo - Edit Profile Page"](https://github.com/khadergw/Smart-TODO-List/blob/master/docs/edit%20profile%20page.png)
+
+
 ## Getting Started
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
