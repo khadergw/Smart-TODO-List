@@ -30,11 +30,7 @@
       src="https://kit.fontawesome.com/91ad631787.js"
       crossorigin="anonymous"
     ></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <link
-      rel="stylesheet"
-      href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"
-    />
+
     <title>EditTODO - Smart-TODO-List-App</title>
   </head>
 
@@ -95,12 +91,9 @@
           </div>
 
           <div id="date-picker" class="input-group datepicker">
-            <div class="input-group-prepend">
-              <i class="fas fa-calendar input-group-text" tabindex="0"></i>
-            </div>
             <input
               placeholder="Select due date"
-              type="text"
+              type="date"
               id="example"
               name="dueDate"
               class="form-control"
@@ -112,7 +105,4 @@
       </div>
     </main>
   </body>
-  <script>
-    $(".datepicker").datepicker();
-  </script>
 </html>
