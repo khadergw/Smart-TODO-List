@@ -16,7 +16,6 @@ module.exports = (db) => {
 
     db.query(queryAddNewUser, [name1, name2, email, hashedPassword])
       .then((user) => {
-        console.log(user.rows[0]);
         const userId = user.rows[0].id;
         req.session.userId = userId;
         res.redirect("/todo");
